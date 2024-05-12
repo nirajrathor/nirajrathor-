@@ -33,6 +33,10 @@ bot = Client(
 async def account_login(bot: Client, m: Message):
     editable = await m.reply_text("Hi!\n\nGive /txt Command to Downlaod From a Text file.\n")
 
+@bot.on_message(filters.command("stop"))
+async def restart_handler(_, m):
+    await m.reply_text("Process Has Been Stopped Successfully !", True)
+    os.execl(sys.executable, sys.executable, *sys.argv)
 
 @bot.on_message(filters.command("restart"))
 async def restart_handler(_, m):
